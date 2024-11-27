@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Ethereal Bank | Contact Us</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/dae4ea2344.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <body>
+        <header style="background:black; outline: 1px solid white">
+            <p class="logo">Ethereal Bank</p>
+            <div class="navbar">
+                <nav>
+                    <ul id="navbar-list">
+                        <li><a href="index.html"><i class="fa fa-home"></i>Home</a></li>
+                        <li><a href="mortgages.html"><i class="fa fa-money"></i>Mortgages</a></li>
+                        <li><a href="about.html"><i class="fa fa-info-circle"></i>About</a></li>
+                        <li><a href="services.html"><i class="fa fa-user"></i>Services</a></li>
+                        <li><a href="faq.html"><i class="fa fa-question-circle"></i>FAQ</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="contact">
+                <a href="contact.html"><i class="fa fa-envelope-o"></i><span>Contact Us</span></a>
+            </div>
+            <div class="hamburger" id="hamburger-icon">
+                <i class="fa fa-bars"></i>
+            </div>
+        </header>
+        <main>
+            <div class="general">
+                <h1 class="general-title">Get in touch with us</h1>
+                <div class="contact-box">
+                    <form id="contact-form">
+                        <label for="contact-name" class="contact-text-label">What is your name?</label>
+                        <input type="text" id="contact-name" class="contact-text" placeholder="John Doe">
+                        <span class="error-message" id="contact-name-error"></span>
+
+                        <label for="contact-email" class="contact-text-label">What is your email?</label>
+                        <input type="text" id="contact-email" class="contact-text" placeholder="john@ethereal.bank">
+                        <span class="error-message" id="contact-email-error"></span>
+                        
+                        <label for="contact-subject" class="contact-text-label">What are you enquiring about?</label>
+                        <input type="text" id="contact-subject" class="contact-text" placeholder="Opening a new account">
+                        <span class="error-message" id="contact-subject-error"></span>
+
+                        <label for="contact-info" class="contact-text-label">Tell us more:</label>
+                        <textarea type="text" id="contact-info" class="contact-text" rows="1" placeholder="Start typing to expand"></textarea>
+                        <span class="error-message" id="contact-info-error"></span>
+
+                        <input type="submit" class="contact-submit" value="Submit Enquiry">
+                    </form>
+                </div>
+            </div>
+            <hr>
+        </main>
+        <footer>
+            <div class="footer-left">
+                <h1>Ethereal Banking Ltd.</h1>
+                <p>123 Baker Street<br>Essex<br>United Kingdom</p>
+                <h2><i class="fa fa-envelope-o"></i>help@ethereal.bank</h2>
+                <h2><i class="fa-solid fa-phone"></i>0300 000 000</h2>
+            </div>
+            <div class="footer-right">
+                <ul>
+                    <li><a href="#"></i>Privacy Policy</a></li>
+                    <li><a href="#"></i>Terms & Conditions</a></li>
+                </ul>
+                <p>© Copyright 2024 Ethereal Bank</p>
+            </div>
+        </footer>
+        <script>
+            const hamburger = document.getElementById('hamburger-icon');
+            const menu = document.getElementById('navbar-list');
+            
+            hamburger.addEventListener('click', () => {
+                menu.classList.toggle('active');
+            });
+        </script>
+        <script>
+            const infoText = document.getElementById('contact-info');
+
+            infoText.addEventListener('input', function () {
+                this.style.height = 'auto';
+                this.style.height = this.scrollHeight + 5 * window.innerHeight / 100 + 'px'; 
+            });
+        </script>
+        <script>
+            // html literally has most of this built in with input types and required attributes but the coursework asks for this
+            $(document).ready(function () {
+                $('#contact-form').on('submit', function (event) {
+                    event.preventDefault();
+                    let isValid = true;
+
+                    const name = $('#contact-name').val();
+                    if (name === "") {
+                        showError('#contact-name', 'Name is required');
+                        isValid = false;
+                    } else {
+                        hideError('#contact-name');
+                    }
+
+                    const email = $('#contact-email').val();
+                    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                    if (email === "") {
+                        showError('#contact-email', 'Email is required');
+                        isValid = false;
+                    } else if (!emailRegex.test(email)) {
+                        showError('#contact-email', 'Please enter a valid email address');
+                        isValid = false;
+                    } else {
+                        hideError('#contact-email');
+                    }
+
+                    const subject = $('#contact-subject').val();
+                    if (subject === "") {
+                        showError('#contact-subject', 'Subject is required');
+                        isValid = false;
+                    } else {
+                        hideError('#contact-subject');
+                    }
+
+                    const info = $('#contact-info').val();
+                    if (info === "") {
+                        showError('#contact-info', 'Message is required');
+                        isValid = false;
+                    } else {
+                        hideError('#contact-info');
+                    }
+
+                    if (isValid) {
+                        $(this).off('submit').submit();
+                    }
+                });
+
+                function showError(input, message) {
+                    $(input).next('.error-message').text(message).show();
+                }
+
+                function hideError(input) {
+                    $(input).next('.error-message').hide();
+                }
+            });
+        </script>
+    </body>
+</html>

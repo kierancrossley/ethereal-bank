@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Ethereal Bank | About Us</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/dae4ea2344.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <body>
+        <header style="background:black; outline: 1px solid white">
+            <p class="logo">Ethereal Bank</p>
+            <div class="navbar">
+                <nav>
+                    <ul id="navbar-list">
+                        <li><a href="index.html"><i class="fa fa-home"></i>Home</a></li>
+                        <li><a href="mortgages.html"><i class="fa fa-money"></i>Mortgages</a></li>
+                        <li><a href="about.html"><i class="fa fa-info-circle"></i>About</a></li>
+                        <li><a href="services.html"><i class="fa fa-user"></i>Services</a></li>
+                        <li><a href="faq.html"><i class="fa fa-question-circle"></i>FAQ</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="contact">
+                <a href="contact.html"><i class="fa fa-envelope-o"></i><span>Contact Us</span></a>
+            </div>
+            <div class="hamburger" id="hamburger-icon">
+                <i class="fa fa-bars"></i>
+            </div>
+        </header>
+        <main>
+            <div class="general">
+                <h1 class="general-title">We want you to know us.</h1>
+
+                <div class="timeline">
+                    <div class="side left">
+                        <div class="time-period">
+                            <h2>1869</h2>
+                            <p>Sir Crossley founded Ethereal Bank as CEO.</p>
+                      </div>
+                        </div>
+                    <div class="side right">
+                        <div class="time-period">
+                            <h2>1900</h2>
+                            <p>His daughter, Jane Doe, took over the bank upon his death.</p>
+                        </div>
+                    </div>
+                    <div class="side left">
+                        <div class="time-period">
+                            <h2>1940</h2>
+                            <p>Our bank created it's mission to put our customer first. You will always be our focus here at Ethereal.</p>
+                        </div>
+                    </div>
+                    <div class="side right">
+                        <div class="time-period">
+                            <h2>2000</h2>
+                            <p>To create a safe, respectful and inclusive environment. The bank created 3 values to follow. They are to always be mindful of others, always look out for your peers and have a <span style="color: #2ecc71"><b>green</b></style> <span style="color: white">mindset.</span></p>
+                        </div>
+                    </div>
+                    <div class="side left">
+                        <div class="time-period">
+                            <h2>2024</h2>
+                            <p>We released our brand new website!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </main>
+        <footer>
+            <div class="footer-left">
+                <h1>Ethereal Banking Ltd.</h1>
+                <p>123 Baker Street<br>Essex<br>United Kingdom</p>
+                <h2><i class="fa fa-envelope-o"></i>help@ethereal.bank</h2>
+                <h2><i class="fa-solid fa-phone"></i>0300 000 000</h2>
+            </div>
+            <div class="footer-right">
+                <ul>
+                    <li><a href="#"></i>Privacy Policy</a></li>
+                    <li><a href="#"></i>Terms & Conditions</a></li>
+                </ul>
+                <p>© Copyright 2024 Ethereal Bank</p>
+            </div>
+        </footer>
+        <script>
+            const hamburger = document.getElementById('hamburger-icon');
+            const menu = document.getElementById('navbar-list');
+            
+            hamburger.addEventListener('click', () => {
+                menu.classList.toggle('active');
+            });
+        </script>
+        <script>
+            var i;
+            var acc = document.getElementsByClassName("question");
+            
+            for (i = 0; i < acc.length; i++) {
+              acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var answer = this.nextElementSibling;
+                console.log(acc)
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null;
+                    answer.style.opacity = 0;
+                    
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                    answer.style.opacity = 1;
+                    this.style.borderRadius = "25px 25px 0 0";
+                } 
+              });
+            }
+        </script>
+    </body>
+</html>

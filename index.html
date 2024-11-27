@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Ethereal Bank | Home</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/dae4ea2344.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <body>
+        <header>
+            <p class="logo">Ethereal Bank</p>
+            <div class="navbar">
+                <nav>
+                    <ul id="navbar-list">
+                        <li><a href="index.html"><i class="fa fa-home"></i>Home</a></li>
+                        <li><a href="mortgages.html"><i class="fa fa-money"></i>Mortgages</a></li>
+                        <li><a href="about.html"><i class="fa fa-info-circle"></i>About</a></li>
+                        <li><a href="services.html"><i class="fa fa-user"></i>Services</a></li>
+                        <li><a href="faq.html"><i class="fa fa-question-circle"></i>FAQ</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="contact">
+                <a href="contact.html"><i class="fa fa-envelope-o"></i><span>Contact Us</span></a>
+            </div>
+            <div class="hamburger" id="hamburger-icon">
+                <i class="fa fa-bars"></i>
+            </div>
+        </header>
+        <main>
+            <div class="hero">
+                <h1>Can't find a money tree?<br><i>Use Ethereal.</i></h1>
+                <span id="down"><i class="fa-solid fa-arrow-down"></i></span>
+            </div>
+            <hr>
+            <div class="home">
+                <div class="home-box">
+                    <span><i class="fa-regular fa-calendar-days"></i></span>
+                    <h1>Same day banking</h1>
+                    <p>Here at Ethereal, we offer fast and easy customer service, allowing for banking anytime! Needs cheques, loans, insurance or something else? Let us know. We can help. We're here 24 hours a day, 7 days a week. Just for you: our loyal customer.</p>
+                </div>  
+                <div class="home-box">
+                    <span><i class="fa-solid fa-bolt-lightning"></i></span>
+                    <h1>Instant access</h1>
+                    <p>With lightning speed bandwitch, you can access your online banking rapidly in any scenario. Need to freeze your card from fraudsters? We've got your back, in less than a flash. There is no latency here, unline our competitors.</p>
+                </div>
+                <div class="home-box">
+                    <span><i class="fa-solid fa-lock"></i></span>
+                    <h1>Military security</h1>
+                    <p>Our security system was made by Kieran, so it's essentially uncrackable. It's like milking water from a rock. Impossible. Not even the FBI can access any of our ISA accounts. If you're looking to stash your cash, here is the place.</p>
+                </div>
+            </div>
+            <hr>
+        </main>
+        <footer>
+            <div class="footer-left">
+                <h1>Ethereal Banking Ltd.</h1>
+                <p>123 Baker Street<br>Essex<br>United Kingdom</p>
+                <h2><i class="fa fa-envelope-o"></i>help@ethereal.bank</h2>
+                <h2><i class="fa-solid fa-phone"></i>0300 000 000</h2>
+            </div>
+            <div class="footer-right">
+                <ul>
+                    <li><a href="#"></i>Privacy Policy</a></li>
+                    <li><a href="#"></i>Terms & Conditions</a></li>
+                </ul>
+                <p>© Copyright 2024 Ethereal Bank</p>
+            </div>
+        </footer>
+        <script>
+            const hamburger = document.getElementById('hamburger-icon');
+            const menu = document.getElementById('navbar-list');
+            
+            hamburger.addEventListener('click', () => {
+                menu.classList.toggle('active');
+            });
+        </script>
+        <script>
+            window.onbeforeunload = function () {
+              window.scrollTo(0, 0);
+            }
+            
+                $(document).ready( function () {
+                $('#down').on('click',function () {
+                $("html").scrollTop(0);
+                    $('html, body').animate({
+                    scrollTop: $(".home").offset().top - 80 
+                }, 300);
+                });
+            });
+        </script>
+        <script>
+            $(window).on('scroll', function() {
+            const header = $('header');
+            const navlist = $('#navbar-list');
+
+            if ($(this).scrollTop() > 50) { 
+                header.css('background', 'black');
+                header.css('outline', '1px solid white');
+                if ($(window).width() <= 1400) {
+                    navlist.css('border-top', 'none');
+                }
+            } else {
+                header.css('background', 'linear-gradient(to bottom, rgba(0, 0, 0 , 1), rgba(0, 0, 0, 0.3))');
+                header.css('outline', '');
+                if ($(window).width() <= 1400) {
+                    navlist.css('border-top', '1px solid white');
+                }
+            }
+        });
+        </script>
+    </body>
+</html>

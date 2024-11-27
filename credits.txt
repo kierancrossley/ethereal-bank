@@ -1,0 +1,6 @@
+background.jpg: https://mariaortegagarcia.com/confidence-spanish/attachment/tyler-lastovich-avzbyhropbs-unsplash/
+patterns: https://heropatterns.com/
+colour palette: https://flatuicolors.com/palette/defo
+icons: https://fontawesome.com/v6/icons/house-chimney-user?f=classic&s=solid
+fonts: https://fonts.google.com/
+email regex: https://regex101.com/library/zQ3mH7

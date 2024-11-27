@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Ethereal Bank | Mortgages</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/dae4ea2344.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <body>
+        <header style="background:black; outline: 1px solid white">
+            <p class="logo">Ethereal Bank</p>
+            <div class="navbar">
+                <nav>
+                    <ul id="navbar-list">
+                        <li><a href="index.html"><i class="fa fa-home"></i>Home</a></li>
+                        <li><a href="mortgages.html"><i class="fa fa-money"></i>Mortgages</a></li>
+                        <li><a href="about.html"><i class="fa fa-info-circle"></i>About</a></li>
+                        <li><a href="services.html"><i class="fa fa-user"></i>Services</a></li>
+                        <li><a href="faq.html"><i class="fa fa-question-circle"></i>FAQ</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="contact">
+                <a href="contact.html"><i class="fa fa-envelope-o"></i><span>Contact Us</span></a>
+            </div>
+            <div class="hamburger" id="hamburger-icon">
+                <i class="fa fa-bars"></i>
+            </div>
+        </header>
+        <main>
+            <div class="general">
+                <div class="eligibility">
+                    <h1 class="general-title" id="title">Check your eligibility!</h1>
+                    <p id="eligibility-info">...</p>
+                </div>
+                <div class="mortgage-box">
+                    <form id="mortgage-form" onsubmit="return validateForm()">
+                        <label for="mortgage-borrow" class="mortgage-number-label">How much £ would you like to borrow?</label>
+                        <input type="number" id="mortgage-borrow" class="mortgage-number" placeholder="500">
+                        <span class="error-message" id="mortgage-borrow-error"></span>
+
+                        <label for="mortgage-monthly" class="mortgage-number-label">How much £ do you earn each month?</label>
+                        <input type="number" id="mortgage-monthly" class="mortgage-number" placeholder="1400">
+                        <span class="error-message" id="mortgage-monthly-error"></span>
+
+                        <label for="mortgage-slider-inner">Borrowing the £ for <output id="loan-time"></output> year<output id="loan-time-plural"></output></label>
+                        <input type="range" id="mortgage-slider-inner" min="1" max="100" value="1">
+                        <span class="error-message" id="mortgage-slider-error"></span>
+
+                        <input type="submit" class="mortgage-calculate" value="Calculate Mortgage">
+                    </form>
+                </div>
+            </div>
+            <hr>
+        </main>
+        <footer>
+            <div class="footer-left">
+                <h1>Ethereal Banking Ltd.</h1>
+                <p>123 Baker Street<br>Essex<br>United Kingdom</p>
+                <h2><i class="fa fa-envelope-o"></i>help@ethereal.bank</h2>
+                <h2><i class="fa-solid fa-phone"></i>0300 000 000</h2>
+            </div>
+            <div class="footer-right">
+                <ul>
+                    <li><a href="#"></i>Privacy Policy</a></li>
+                    <li><a href="#"></i>Terms & Conditions</a></li>
+                </ul>
+                <p>© Copyright 2024 Ethereal Bank</p>
+            </div>
+        </footer>
+        <script>
+            const hamburger = document.getElementById('hamburger-icon');
+            const menu = document.getElementById('navbar-list');
+            
+            hamburger.addEventListener('click', () => {
+                menu.classList.toggle('active');
+            });
+        </script>
+        <script>
+            function validateForm() {
+                let isValid = true;
+
+                const mortgageBorrow = document.getElementById("mortgage-borrow");
+                if (mortgageBorrow.value <= 0) {
+                    showError(mortgageBorrow, "Amount must be greater than 0");
+                    isValid = false;
+                } else {
+                    hideError(mortgageBorrow);
+                }
+
+                const mortgageMonthly = document.getElementById("mortgage-monthly");
+                if (mortgageMonthly.value <= 0) {
+                    showError(mortgageMonthly, "Monthly income must be greater than 0");
+                    isValid = false;
+                } else {
+                    hideError(mortgageMonthly);
+                }
+
+                const slider = document.getElementById("mortgage-slider-inner");
+                if (slider.value > 100) {
+                    showError(slider, "Loan duration must not exceed 100 years");
+                    isValid = false;
+                } else if (slider.value < 1) {
+                    showError(slider, "Loan duration must be at least 1 year");
+                    isValid = false;
+                } else {
+                    hideError(slider);
+                }
+
+                if (isValid) {
+                    calculateMortgage();
+                }
+
+                return false;
+            }
+
+            function showError(input, message) {
+                $(input).next('.error-message').text(message).show();
+            }
+
+            function hideError(input) {
+                $(input).next('.error-message').hide();
+            }
+        </script>
+        <script>
+            var title = document.getElementById("title");
+            var info = document.getElementById("eligibility-info");
+            var borrow = document.getElementById("mortgage-borrow");
+            var monthly = document.getElementById("mortgage-monthly");
+            var slider = document.getElementById("mortgage-slider-inner");
+            var timeOutput = document.getElementById("loan-time");
+            var pluralOutput = document.getElementById("loan-time-plural");
+            timeOutput.value = slider.value; 
+
+            slider.oninput = function() {
+                timeOutput.innerHTML = this.value;
+                if (this.value > 1) {
+                    pluralOutput.innerHTML = "s"
+                } else {
+                    pluralOutput.innerHTML = ""
+                }
+            }
+
+            function calculateMortgage() {
+                var bValue = borrow.value;
+                var mValue = monthly.value;
+                var sValue = slider.value;
+                var r = 0.045 / 12; 
+                var n = sValue * 12; 
+                var calculation = (bValue * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+                if (calculation > (mValue * 0.3)){
+                    title.innerHTML = "Sorry, you're ineligible.";
+                    title.style.color = "#e74c3c";
+                    title.style.textShadow = "0px 0px 20px #c0392b";
+                    info.innerHTML = `Loan denied: monthly payment of £${calculation.toFixed(2)} exceeds 30% of your income`
+                    info.classList.add('show');
+                } else {
+                    var totalPayment = calculation * n
+                    title.innerHTML = "Congrats, you're eligible!";
+                    title.style.color = "#2ecc71";
+                    title.style.textShadow = "0px 0px 20px #27ae60";
+                    info.innerHTML = `<b>Monthly payment: </b>£${calculation.toFixed(2)} -
+                    <b>Total payment: </b>£${totalPayment.toFixed(2)} - 
+                    <b>Total interest: </b>£${(totalPayment - bValue).toFixed(2)} - 
+                    <b>Leftover income: </b>£${(mValue - calculation).toFixed(2)}`
+                    info.classList.add('show');
+                }
+
+                $("html").scrollTop(0);
+                $('html, body').animate({
+                    scrollTop: $(".general").offset().top - 100
+                }, 200)
+            }
+        </script>
+    </body>
+</html>
